@@ -14,6 +14,18 @@ public class ProductRepository {
         return product;
     }
 
+    public Product findByNameAndDelete(String productName) {
+        Product ans = new Product();
+        for (Product product : productData) {
+            if (product.getProductName().equals(productName)) {
+                ans = product;
+                productData.remove(product);
+                break;
+            }
+        }
+        return ans;
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
