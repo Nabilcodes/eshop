@@ -28,4 +28,5 @@ jobs:
         with:
           args: >
             -Dsonar.organization=nabilcodes
+            -Dsonar.projectKey=Nabilcodes_eshop
             -Dsonar.projectName=archshepherd/eshop
