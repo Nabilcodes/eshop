@@ -27,5 +27,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=sonar.project.monorepo.enabled
             -Dsonar.organization=nabilcodes
+            -Dsonar.projectName=archshepherd/eshop
