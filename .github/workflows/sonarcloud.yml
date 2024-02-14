@@ -21,6 +21,6 @@ jobs:
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@2.1.1
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
