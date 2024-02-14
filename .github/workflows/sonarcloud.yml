@@ -27,7 +27,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=archshepherd
+            -Dsonar.organization=nabilcodes
             -Dsonar.projectName=eshop
             -Dsonar.projectKey=Nabilcodes_eshop
             
