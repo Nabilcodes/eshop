@@ -2,8 +2,6 @@ name: SonarCloud Analysis
 
 on:
   push:
-    branches-ignore:
-      - '*'  # Ignore all branches except the ones listed below
     branches:
       - '**'  # Trigger on all branches
 
