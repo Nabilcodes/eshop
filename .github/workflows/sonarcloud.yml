@@ -30,3 +30,4 @@ jobs:
             -Dsonar.organization=nabilcodes
             -Dsonar.projectKey=Nabilcodes_eshop
             -Dsonar.projectName=archshepherd/eshop
+            -Dsonar.login=$SONAR_KEY
