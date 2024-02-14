@@ -12,14 +12,17 @@ jobs:
     steps:
       - name: Check out the Git Repository
         uses: actions/checkout@v4
+
       - name: Set up Java toolchain
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: "21"
+          java-version: "11"
           cache: "gradle"
+
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
@@ -28,6 +31,6 @@ jobs:
         with:
           args: >
             -Dsonar.organization=nabilcodes
-            -Dsonar.projectName=eshop
             -Dsonar.projectKey=Nabilcodes_eshop
-            
+            -Dsonar.projectName=eshop
+            -Dsonar.java.binaries=./build/classes/java/main
