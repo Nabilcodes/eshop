@@ -37,11 +37,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Install koyeb CLI
+        run: |
+          curl -s https://install.koyeb.com | bash
       - name: Deploy to Koyeb
         uses: koyeb/action-git-deploy@v1
         with:
           app-name: coastal-cod
           service-name: eshop
-          service-ports: '8080:http'
+          service-ports: 8080:http
+
 #          image: nabilcodes/eshop:name-update-v0.1
 #          environment: fdafc804
