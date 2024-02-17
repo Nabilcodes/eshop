@@ -40,12 +40,25 @@ jobs:
       - name: Install koyeb CLI
         run: |
           curl -s https://install.koyeb.com | bash
+          export PATH=$PATH:$HOME/.koyeb/bin
       - name: Deploy to Koyeb
         uses: koyeb/action-git-deploy@v1
         with:
           app-name: coastal-cod
           service-name: eshop
           service-ports: 8080:http
+          build-timeout: 900
+          healthy-timeout: 900
+          privileged: false
+          git-url: github.com/Nabilcodes/eshop
+          git-branch: troubleshoot-docker-error
+          git-builder: buildpack
+          service-instance-type: nano
+          service-regions: fra
+          service-routes: /:80
+          service-type: web
+          skip-cache: false
+
 
 #          image: nabilcodes/eshop:name-update-v0.1
 #          environment: fdafc804
