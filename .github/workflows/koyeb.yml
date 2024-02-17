@@ -38,9 +38,10 @@ jobs:
     needs: build
     steps:
       - name: Deploy to Koyeb
-        uses: koyeb/koyeb-action@v1
+        uses: koyeb/action-git-deploy@v1
         with:
-          api-key: ${{ secrets.KOYEB_API_KEY }}
-          app-name: eshop
-          image: nabilcodes/eshop:name-update-v0.1
-          environment: fdafc804
+          app-name: coastal-cod
+          service-name: eshop
+          service-ports: '8080:http'
+#          image: nabilcodes/eshop:name-update-v0.1
+#          environment: fdafc804
