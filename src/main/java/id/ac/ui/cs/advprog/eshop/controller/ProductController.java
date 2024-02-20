@@ -1,6 +1,9 @@
 package id.ac.ui.cs.advprog.eshop.controller;
+import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,19 +29,6 @@ public class ProductController {
         return "redirect:list";
     }
 
-    @GetMapping("/edit")
-    public String editProductPage(@RequestParam String productName, Model model) {
-        Product product = service.findByNameAndDelete(productName);
-        model.addAttribute("product", product);
-        return "EditProduct";
-    }
-
-    @PostMapping("/edit")
-    public String editProductPost(@ModelAttribute Product product, Model model) {
-        service.create(product);
-        return "redirect:list";
-    }
-
     @GetMapping("/list")
     public String productListPage(Model model){
         List<Product> allProducts = service.findAll();
@@ -46,7 +36,20 @@ public class ProductController {
         return "ProductList";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/edit") // salah di bagian ini
+    public String editProductPage(@RequestParam String productName, Model model) {
+        Product product = service.findByNameAndDelete(productName);
+        model.addAttribute("product", product);
+        return "EditProduct";
+    }
+
+    @PostMapping("/edit") // salah di bagian ini juga
+    public String editProductPost(@ModelAttribute Product product, Model model) {
+        service.create(product);
+        return "redirect:list";
+    }
+
+    @GetMapping("/delete") // salah di bagian ini juga
     public String deleteProduct(@RequestParam String productName) {
         service.findByNameAndDelete(productName);
         return "redirect:list";
