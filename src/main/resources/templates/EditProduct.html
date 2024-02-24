@@ -13,7 +13,7 @@
     <h3>Edit Product</h3>
     <form th:action="@{/product/edit}" th:object="${product}" method="post">
         <div class="form-group">
-            <label for="nameInput">Name</label>
+            <label for="quantityInput">Name</label>
             <input th:field="*{productName}"
                    type="text"
                    class="form-control mb-4 col-4"
