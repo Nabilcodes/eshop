@@ -7,24 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements ItemRepository<Product> {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
         productData.add(product);
         return product;
-    }
-
-    public Product findByNameAndDelete(String productName) {
-        Iterator<Product> iterator = productData.iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            if (product.getProductName().equals(productName)) {
-                iterator.remove();
-                return product;
-            }
-        }
-        return null;
     }
 
     public Iterator<Product> findAll() {
@@ -40,16 +28,14 @@ public class ProductRepository {
         return null;
     }
 
-    public Product deleteProductById(String productId) {
+    public void deleteById(String productId) {
         Iterator<Product> iterator = productData.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getProductId().equals(productId)) {
                 iterator.remove();
-                return product;
             }
         }
-        return null;
     }
 
     public Product update(String productId, Product updatedProduct) {

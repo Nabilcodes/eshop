@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements CarCreateService,CarRetrieveService,CarUpdateService,CarDeleteService{
 
     @Autowired
     private CarRepository carRepository;
@@ -35,15 +35,16 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public void update(String carId, Car car) {
+    public Car update(String carId, Car car) {
         //TODO Auto-generated method stub
         carRepository.update(carId, car);
+        return null;
     }
 
     @Override
-    public void deleteCarById(String carId) {
+    public void deleteById(String carId) {
         //TODO Auto-generated method stub
-        carRepository.delete(carId);
+        carRepository.deleteById(carId);
     }
 
 }

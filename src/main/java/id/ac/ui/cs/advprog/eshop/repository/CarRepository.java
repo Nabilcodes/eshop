@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class CarRepository {
+public class CarRepository implements ItemRepository<Car> {
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
     public Car create(Car car) { // add new car to repository
@@ -45,5 +45,5 @@ public class CarRepository {
         return null;
     }
 
-    public void delete(String id) { carData.removeIf(car -> car.getCarId().equals(id)); }
+    public void deleteById(String id) { carData.removeIf(car -> car.getCarId().equals(id)); }
 }

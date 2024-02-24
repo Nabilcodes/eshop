@@ -3,7 +3,10 @@ package id.ac.ui.cs.advprog.eshop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.service.CarService;
+import id.ac.ui.cs.advprog.eshop.service.CarCreateService;
+import id.ac.ui.cs.advprog.eshop.service.CarDeleteService;
+import id.ac.ui.cs.advprog.eshop.service.CarRetrieveService;
+import id.ac.ui.cs.advprog.eshop.service.CarUpdateService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,16 @@ import java.util.List;
 public class CarController extends ProductController {
 
     @Autowired
-    private CarService carService;
+    private CarCreateService carCreateService;
+
+    @Autowired
+    private CarDeleteService carDeleteService;
+
+    @Autowired
+    private CarRetrieveService carRetrieveService;
+
+    @Autowired
+    private CarUpdateService carUpdateService;
 
     @GetMapping("/createCar")
     public String createCarPage(Model model) {
@@ -26,20 +38,20 @@ public class CarController extends ProductController {
 
     @PostMapping("/createCar")
     public String createCarPost(@ModelAttribute Car car, Model model){
-        carService.create(car);
+        carCreateService.create(car);
         return "redirect:listCar";
     }
 
     @GetMapping("/listCar")
     public String carListPage(Model model){
-        List<Car> allCars = carService.findAll();
+        List<Car> allCars = carRetrieveService.findAll();
         model.addAttribute("cars",allCars);
         return "carList";
     }
 
     @GetMapping("/editCar/{carId}")
     public String editCarPage(@PathVariable String carId, Model model) {
-        Car car = carService.findById(carId);
+        Car car = carRetrieveService.findById(carId);
         model.addAttribute("car",car);
         return "editCar";
     }
@@ -47,7 +59,7 @@ public class CarController extends ProductController {
     @PostMapping("/editCar")
     public String editCarPost(@ModelAttribute Car car, Model model) {
         System.out.println(car.getCarId());
-        carService.update(car.getCarId(), car);
+        carUpdateService.update(car.getCarId(), car);
 
         return "redirect:listCar";
     }
