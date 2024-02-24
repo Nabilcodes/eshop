@@ -49,30 +49,29 @@ In this project, we apply each of the 5 SOLID principles.
       these 4 new service into the CarController.java
 
 We also gain huge advantage into incorporating SOLID principles to our project, namely :
-    1) Single Responsibility Principle (SRP) :
+   1) Single Responsibility Principle (SRP) :
+      
+      By using single responsibility principle in CarCreateService.java and similar 
+      service, we were able to have an implementation that were simpler in terms of 
+      capabilities, such as solely only need to create item without the ability to 
+      ever change or delete the added item. We do not need to modify previously
+      available implementation. 
+   2) Open Closed Principle (OCP):
+      
+      With OCP, such as in Product.java, we were able to make a more specific version         
+      of product without the need to modify the Product.java class. Simple class that
+      extends the properties of Product.java were sufficient.
+   3) Liskov Substitution Principle (LSP) :
+      
+      With LSP, such as in ProductRepository and ItemRepository, adding new repository would be much easier.
+   4) Interface Segregation Principle (ISP) :
+      
+      With ISP, implementation of simpler functionalities would be easier. We were able to make an implementation that only needs to create product with the CarCreateService, for example.
+   5) Dependency Inversion Principle (DIP):
+       
+      With DIP, changes in implementation (not the interfaces) would not cause problems in CarController, as opposed to if we've had injected the implementation instead.
 
-       By using single responsibility principle in CarCreateService.java and similar 
-       service, we were able to have an implementation that were simpler in terms of 
-       capabilities, such as solely only need to create item without the ability to 
-       ever change or delete the added item. We do not need to modify previously
-       available implementation. 
-    2) Open Closed Principle (OCP) :
-    
-       With OCP, such as in Product.java, we were able to make a more specific version         of product without the need to modify the Product.java class. Simple class that
-       extends the properties of Product.java were sufficient.
-
-    3) Liskov Substitution Principle (LSP) :
-
-       With LSP, such as in ProductRepository and ItemRepository, adding new repository        would be much easier.
-
-    4) Interface Segregation Principle (ISP) :
-
-       With ISP, implementation of simpler functionalities would be easier. We were            able to make an implementation that only needs to create product with the               CarCreateService, for example.
-
-    5) Dependency Inversion Principle (DIP):
-
-       With DIP, changes in implementation (not the interfaces) would not cause                problems in CarController, as opposed to if we've had injected the   
-       implementation instead.
+       
 
        
 
