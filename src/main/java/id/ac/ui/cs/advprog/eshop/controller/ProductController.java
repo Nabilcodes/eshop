@@ -1,8 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
-import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,16 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductService service;
+    private ProductCreateService productCreateService;
+
+    @Autowired
+    private ProductDeleteService productDeleteService;
+
+    @Autowired
+    private ProductRetrieveService productRetrieveService;
+
+    @Autowired
+    private ProductUpdateService productUpdateService;
 
     @GetMapping("/create")
     public String createProductPage(Model model) {
@@ -25,53 +33,34 @@ public class ProductController {
 
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
-        service.create(product);
+        productCreateService.create(product);
         return "redirect:list";
     }
 
     @GetMapping("/list")
     public String productListPage(Model model){
-        List<Product> allProducts = service.findAll();
+        List<Product> allProducts = productRetrieveService.findAll();
         model.addAttribute("products",allProducts);
         return "ProductList";
     }
 
-//    @GetMapping("/edit") // salah di bagian ini
-//    public String editProductPage(@RequestParam String productName, Model model) {
-//        Product product = service.findByNameAndDelete(productName);
-//        model.addAttribute("product", product);
-//        return "EditProduct";
-//    }
-
     @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable String productId, Model model) {
-        Product product = service.findById(productId);
+        Product product = productRetrieveService.findById(productId);
         model.addAttribute("product", product);
         return "EditProduct";
     }
 
-//    @PostMapping("/edit") // salah di bagian ini juga
-//    public String editProductPost(@ModelAttribute Product product, Model model) {
-//        service.create(product);
-//        return "redirect:list";
-//    }
-
     @PostMapping("/edit") // salah di bagian ini juga
     public String editProductPost(@ModelAttribute Product product, Model model) {
         System.out.println(product.getProductId());
-        service.update(product.getProductId(), product);
+        productUpdateService.update(product.getProductId(), product);
         return "redirect:list";
     }
 
-//    @GetMapping("/delete") // salah di bagian ini juga
-//    public String deleteProduct(@RequestParam String productName) {
-//        service.findByNameAndDelete(productName);
-//        return "redirect:list";
-//    }
-
     @GetMapping("/delete") // salah di bagian ini juga
     public String deleteProduct(@RequestParam("productId") String productId) {
-        service.deleteProductById(productId);
+        productDeleteService.deleteById(productId);
         return "redirect:list";
     }
 

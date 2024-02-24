@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductCreateService,ProductRetrieveService,ProductUpdateService,ProductDeleteService{
 
     @Autowired
     private ProductRepository productRepository;
@@ -33,9 +33,8 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product deleteProductById(String productId) {
-        Product product = productRepository.deleteProductById(productId);
-        return product;
+    public void deleteById(String productId) {
+        productRepository.deleteById(productId);
     }
 
 
