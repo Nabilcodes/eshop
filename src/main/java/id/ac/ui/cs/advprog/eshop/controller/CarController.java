@@ -2,10 +2,20 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import id.ac.ui.cs.advprog.eshop.model.Car;
+import id.ac.ui.cs.advprog.eshop.service.CarService;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@Controller
+@RequestMapping("/car")
 public class CarController extends ProductController {
 
     @Autowired
-    private CarServiceImpl carService;
+    private CarService carService;
 
     @GetMapping("/createCar")
     public String createCarPage(Model model) {
@@ -22,7 +32,7 @@ public class CarController extends ProductController {
 
     @GetMapping("/listCar")
     public String carListPage(Model model){
-        List<Car> allCars = carservice.findAll();
+        List<Car> allCars = carService.findAll();
         model.addAttribute("cars",allCars);
         return "carList";
     }
@@ -35,7 +45,7 @@ public class CarController extends ProductController {
     }
 
     @PostMapping("/editCar")
-    public String editCarPost(@ModelAttribiute Car car, Model model) {
+    public String editCarPost(@ModelAttribute Car car, Model model) {
         System.out.println(car.getCarId());
         carService.update(car.getCarId(), car);
 

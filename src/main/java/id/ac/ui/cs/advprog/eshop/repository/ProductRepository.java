@@ -1,4 +1,5 @@
 package id.ac.ui.cs.advprog.eshop.repository;
+
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
@@ -15,18 +16,50 @@ public class ProductRepository {
     }
 
     public Product findByNameAndDelete(String productName) {
-        Product ans = new Product();
-        for (Product product : productData) {
+        Iterator<Product> iterator = productData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
             if (product.getProductName().equals(productName)) {
-                ans = product;
-                productData.remove(product);
-                break;
+                iterator.remove();
+                return product;
             }
         }
-        return ans;
+        return null;
     }
 
     public Iterator<Product> findAll() {
         return productData.iterator();
+    }
+
+    public Product findById(String productId) {
+        for (Product product : productData) {
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product deleteProductById(String productId) {
+        Iterator<Product> iterator = productData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getProductId().equals(productId)) {
+                iterator.remove();
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product update(String productId, Product updatedProduct) {
+        for (int i = 0; i < productData.size(); i++) {
+            Product product = productData.get(i);
+            if (product.getProductId().equals(productId)) {
+                productData.set(i, updatedProduct);
+                return updatedProduct;
+            }
+        }
+        return null; // Product not found
     }
 }

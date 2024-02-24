@@ -36,22 +36,42 @@ public class ProductController {
         return "ProductList";
     }
 
-    @GetMapping("/edit") // salah di bagian ini
-    public String editProductPage(@RequestParam String productName, Model model) {
-        Product product = service.findByNameAndDelete(productName);
+//    @GetMapping("/edit") // salah di bagian ini
+//    public String editProductPage(@RequestParam String productName, Model model) {
+//        Product product = service.findByNameAndDelete(productName);
+//        model.addAttribute("product", product);
+//        return "EditProduct";
+//    }
+
+    @GetMapping("/edit/{productId}")
+    public String editProductPage(@PathVariable String productId, Model model) {
+        Product product = service.findById(productId);
         model.addAttribute("product", product);
         return "EditProduct";
     }
 
+//    @PostMapping("/edit") // salah di bagian ini juga
+//    public String editProductPost(@ModelAttribute Product product, Model model) {
+//        service.create(product);
+//        return "redirect:list";
+//    }
+
     @PostMapping("/edit") // salah di bagian ini juga
     public String editProductPost(@ModelAttribute Product product, Model model) {
-        service.create(product);
+        System.out.println(product.getProductId());
+        service.update(product.getProductId(), product);
         return "redirect:list";
     }
 
+//    @GetMapping("/delete") // salah di bagian ini juga
+//    public String deleteProduct(@RequestParam String productName) {
+//        service.findByNameAndDelete(productName);
+//        return "redirect:list";
+//    }
+
     @GetMapping("/delete") // salah di bagian ini juga
-    public String deleteProduct(@RequestParam String productName) {
-        service.findByNameAndDelete(productName);
+    public String deleteProduct(@RequestParam("productId") String productId) {
+        service.deleteProductById(productId);
         return "redirect:list";
     }
 
