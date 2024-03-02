@@ -9,14 +9,34 @@ public class OrderServiceImpl {
     private OrderRepository orderRepository;
 
     @Override
-    public Order createOrder(Order order) {return null;}
+    public Order createOrder(Order order) {
+        if (orderRepository.findById(order.getId()) == null) {
+            orderRepository.save(order);
+            return order;
+        }
+        return null;
+    }
 
     @Override
-    public Order updateStatus(String orderId, String status) {return null;}
+    public Order updateStatus(String orderId, String status) {
+        Order order = orderRepository.findById(orderId);
+        if (order != null) {
+            Order newOrder = new Order(order.getId(), order.getProducts(),
+                    order.getOrderTime(), order.getAuthor(), status);
+            orderRepository.save(newOrder);
+            return newOrder;
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
 
     @Override
-    public List<Order> findAllByAuthor(String author) {return null;}
+    public List<Order> findAllByAuthor(String author) {
+        return orderRepository.findById(orderId);
+    }
 
     @Override
-    public Order findById(String orderId) {return null;}
+    public Order findById(String orderId) {
+        return orderRepository.findAllByAuthor(author);
+    }
 }
