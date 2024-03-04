@@ -11,6 +11,7 @@ import java.util.Map;
 
 @Builder
 @Getter
+@Setter
 public class Payment {
     String id;
     String method;

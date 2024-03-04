@@ -70,7 +70,7 @@ class PaymentTest {
 
     @Test // Unhappy test
     void testSetMethodToInvalidMethod() {
-        Payment payment = new Payment("123456", this.paymentData,"VOUCHER_CODE" "SUCCESS", this.paymentData);
+        Payment payment = new Payment("123456", this.paymentData,"VOUCHER_CODE", "SUCCESS");
         assertThrows(IllegalArgumentException.class, () -> payment.setMethod("CREDIT_CARD"));
     }
 
