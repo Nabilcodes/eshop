@@ -22,9 +22,9 @@ class OrderTest {
         product1.setProductQuantity(2);
 
         Product product2 = new Product();
-        product1.setProductId("a2c62328-4a37-4664-83c7-f32db8620155");
-        product1.setProductName("Sampo Cap Usep");
-        product1.setProductQuantity(1);
+        product2.setProductId("a2c62328-4a37-4664-83c7-f32db8620155");
+        product2.setProductName("Sampo Cap Usep");
+        product2.setProductQuantity(1);
 
         this.products.add(product1);
         this.products.add(product2);
@@ -54,7 +54,7 @@ class OrderTest {
         assertEquals("13652556-012a-4c07-b546-54eb1396d79b", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
-        assertEquals("WAITING PAYMENT", order.getStatus());
+        assertEquals("WAITING_PAYMENT", order.getStatus());
 
     }
 
@@ -76,7 +76,8 @@ class OrderTest {
     @Test
     void testSetStatusToCancelled() {
         Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
-                this.products, 1708560000L, "Safira Sudrajat", order.setStatus("CANCELLED"));
+                this.products, 1708560000L, "Safira Sudrajat");
+        order.setStatus("CANCELLED");
         assertEquals("CANCELLED", order.getStatus());
     }
 
