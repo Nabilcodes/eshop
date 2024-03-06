@@ -71,6 +71,32 @@ We also gain huge advantage into incorporating SOLID principles to our project, 
        
       With DIP, changes in implementation (not the interfaces) would not cause problems in CarController, as opposed to if we've had injected the implementation instead.
 
+REFLECTION MODULE 4
+
+> SELF REFLECTION A
+
+Based on the questions proposed by Percival, I do realize that test making does really helps me out. With the completeness of testing over all possible scenario, I managed to monitor all possible error that can ever happen and keep the software development proceess safe, fast, and reliable.
+
+For example, with a correct and properly written test, I can write the code as fast as I want, without the worry to have the code made error because I already had a 'safety net' in the first place (the tests). If I wanted to make sure the functionality of some portion of the code only, I was also enabled to run some of the corresponding test suite. This does really helps in time, improving flexibility and agility. The process of making tests it self (outside the time spent to determine what were the things to test) was also does not take much time since simple test were sufficient and a lot of the test format were similar, allowing code copy-paste with minimal modification.
+
+Also, I still think that I need to improve my test making capability. The things that I can try to achieve such thing may include seeing other codebase to see how tests were done (what function or mechanism were included) and also see a faster yet more solid approach to determine all things to test.
+
+> SELF REFLECTION B (live code example)
+
+The code was already have good suggestions on how the refactoring should be done. But I personally think more error handling should be done on the code. The lack of error handling in the code means that it does not account for situations where the input is incorrect or unexpected conditions occur. This oversight could lead to runtime errors, which are issues that occur while the program is running, which can lead to severe mismanagement. 
+
+To improve the robustness of the code, I think tha addition of error handling mechanisms that can detect and gracefully handle such issues were of great benefit. This approach may involve elementary things such as validating input data, checking for null or invalid values, and implementing exception handling. By addressing these concerns, the code can become more resilient and less prone to unexpected failures, ensuring a more reliable and stable application for users to interact with.
+
+> FIRST PRINCIPLE REFLECTION
+
+I do genuinely think the test that I made already followed FIRST principle, as I would detail below :
+
+A.FAST            : The tests were simple and easy to compute
+B.Isolated        : The tests case were independent as it was focusing on single path, happy or unhappy. It also didnt change the state of function as for each test, a setup method to mock real implementation already provided.
+C.Repeatable      : Tests were repeatable as it doesnt change any state of functions.
+D.Self-Validating : The tests were strict as it have specific criteria of success or fail. For example, a concrete and specific test using assertEqual, assertNull were used for all important and interchanged field.
+E.Timely          : Test does cover all possible scenario. I always try to understand the specification and requirement of the programs that want to be implemented first, and for each specific criteria try to enumerate all possible input to the program and its corresponding expected answer.
+
        
 
        
