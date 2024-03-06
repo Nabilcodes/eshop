@@ -92,9 +92,13 @@ To improve the robustness of the code, I think tha addition of error handling me
 I do genuinely think the test that I made already followed FIRST principle, as I would detail below :
 
 A.FAST            : The tests were simple and easy to compute
+
 B.Isolated        : The tests case were independent as it was focusing on single path, happy or unhappy. It also didnt change the state of function as for each test, a setup method to mock real implementation already provided.
+
 C.Repeatable      : Tests were repeatable as it doesnt change any state of functions.
+
 D.Self-Validating : The tests were strict as it have specific criteria of success or fail. For example, a concrete and specific test using assertEqual, assertNull were used for all important and interchanged field.
+
 E.Timely          : Test does cover all possible scenario. I always try to understand the specification and requirement of the programs that want to be implemented first, and for each specific criteria try to enumerate all possible input to the program and its corresponding expected answer.
 
        
